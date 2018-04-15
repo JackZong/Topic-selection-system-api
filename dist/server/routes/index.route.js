@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 
 var _express = require('express');
@@ -19,14 +19,17 @@ var _user2 = _interopRequireDefault(_user);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = _express2.default.Router();
-router.get('/health', function (req, res) {
-  _user2.default.getList.then(function (re) {
-    res.json(re.recordset);
-  }).catch(function (err) {
-    console.log(err);
-  });
-});
-// mount auth routes
-router.use('/auth', _auth2.default);
+// router.get('/health', (req,res)=>{
+//    userModel.getList.then((re)=>{
+//     res.json(re.recordset)
+//    }).catch(err=>{
+//    	console.log(err)
+//    }) 
+// })
+// router.get('/thesis/list',(req,res) => {
 
+// })
+// // mount auth routes
+// router.use('/auth',authRoutes)
+router.get('/users', function (req, res) {});
 exports.default = router;

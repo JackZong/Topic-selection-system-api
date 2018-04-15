@@ -1,5 +1,5 @@
-import Joi from 'Joi'
-export default {
+const Joi = require('joi')
+module.exports = {
 	createUser: {
 		body: {
          username: Joi.string().required(),
@@ -10,4 +10,4 @@ export default {
 		username: Joi.string().required(),
 		password: Joi.string().required()
 	}
-}
+};

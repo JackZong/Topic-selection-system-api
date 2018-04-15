@@ -1,22 +1,20 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+var Sequelize = require('sequelize');
+var sequelize = new Sequelize('gtas', 'root', 'root', {
+	host: 'localhost',
+	dialect: 'mssql',
+	operatorsAliases: false,
+	pool: {
+		max: 5,
+		min: 0,
+		acquire: 30000,
+		idle: 10000
+	}
 });
-
-var _mssql = require('mssql');
-
-var _mssql2 = _interopRequireDefault(_mssql);
-
-var _config = require('./config');
-
-var _config2 = _interopRequireDefault(_config);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var db = _config2.default.db;
-
-function pool(callback) {
-  return new _mssql2.default.ConnectionPool(db).connect();
-}
-exports.default = pool;
+sequelize.authenticate().then(function () {
+	console.log('connection ok');
+}).catch(function (err) {
+	console.log('connection fail', err);
+});
+module.exports = sequelize;

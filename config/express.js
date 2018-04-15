@@ -1,7 +1,7 @@
-import express from 'express'
-import config from './config'
-import routes from '../server/routes/index.route'
-import bodyParser from 'body-parser'
+const express = require('express')
+const config = require('./config')
+const routes = require('../index.route')
+const bodyParser = require('body-parser')
 const app = express()
 if(config.env === 'dev') {
 	console.log('this is a dev')
@@ -10,4 +10,4 @@ if(config.env === 'dev') {
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/api',routes)
-export default app
+module.exports = app

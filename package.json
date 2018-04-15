@@ -21,7 +21,9 @@
     "http-status": "^1.0.1",
     "joi": "^13.1.2",
     "jsonwebtoken": "^8.2.0",
-    "mssql": "^4.1.0"
+    "mssql": "^4.1.0",
+    "sequelize": "^4.37.6",
+    "tedious": "^2.3.1"
   },
   "devDependencies": {
     "babel": "^6.23.0",
