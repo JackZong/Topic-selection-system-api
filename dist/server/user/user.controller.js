@@ -45,4 +45,15 @@ function remove(req, res, next) {
 	var user = req.user;
 	user.remove().then().catch();
 }
-module.exports = { load: load, list: list, create: create, update: update, remove: remove };
+function login(req, res, next) {
+	User.login(req.body).then(function (response) {
+		if (response.st_password === req.body.password) {
+			res.json({ code: 1, msg: 'suceess' });
+		} else {
+			res.json({ code: 0, msg: 'password not correct' });
+		}
+	}).catch(function (err) {
+		res.json({ code: -1, msg: 'request error' });
+	});
+}
+module.exports = { load: load, list: list, create: create, update: update, remove: remove, login: login };

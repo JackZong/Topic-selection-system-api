@@ -29,4 +29,15 @@ function remove(req,res,next) {
 	const user = req.user
 	user.remove().then().catch()
 }
-module.exports = { load, list, create, update, remove }
+function login(req,res,next) {
+	User.login(req.body).then(response => {
+		if(response.st_password === req.body.password) {
+			res.json({ code: 1, msg: 'suceess'}) 
+		} else {
+			res.json({ code: 0, msg: 'password not correct' })
+		}
+	}).catch(err => {
+		res.json({ code: -1, msg: 'request error' }) 
+	})
+}
+module.exports = { load, list, create, update, remove, login }

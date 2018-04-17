@@ -7,5 +7,5 @@ router.get('/help-check',(req,res) => {
 	res.send('OK')
 })
 router.use('/users/', userRoutes)
-router.use('/thesises/', thesisRoutes)
+router.use('/thesis/', thesisRoutes)
 module.exports = router

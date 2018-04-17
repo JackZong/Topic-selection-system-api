@@ -23,5 +23,5 @@ router.get('/help-check', function (req, res) {
 	res.send('OK');
 });
 router.use('/users/', _user2.default);
-router.use('/thesises/', _thesis2.default);
+router.use('/thesis/', _thesis2.default);
 module.exports = router;

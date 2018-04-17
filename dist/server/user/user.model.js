@@ -72,4 +72,11 @@ function list() {
   });
 }
 function get() {}
-module.exports = { list: list, get: get };
+function login(payload) {
+  return Student.findOne({
+    attributes: ['st_password'],
+    raw: true,
+    where: { 'st_id': payload.username }
+  });
+}
+module.exports = { list: list, get: get, login: login };
