@@ -8,9 +8,9 @@ const paths = {
 }
 gulp.task('default', function(){
 
-  var watcher = gulp.watch(['*.js','./server/**/*.js','./config/**.js'],['babel'])
+  var watcher = gulp.watch(['*.js','./server/**/*.js','./config/**.js','./utils/*.js'],['babel'])
   watcher.on('change',function(e){
-  	console.log('file' + e.path + 'was' + e.type + ' running task')
+  	console.log('file' + e.path + ' was ' + e.type + ' running task')
   })
 })
 gulp.task('babel',() => {

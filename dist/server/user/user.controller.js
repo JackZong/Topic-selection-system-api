@@ -48,11 +48,12 @@ function remove(req, res, next) {
 function login(req, res, next) {
 	User.login(req.body).then(function (response) {
 		if (response.st_password === req.body.password) {
-			res.json({ code: 1, msg: 'suceess' });
+			res.json({ code: 1, msg: 'login suceess', data: { username: req.body.username } });
 		} else {
 			res.json({ code: 0, msg: 'password not correct' });
 		}
 	}).catch(function (err) {
+		console.log('login fail', err);
 		res.json({ code: -1, msg: 'request error' });
 	});
 }

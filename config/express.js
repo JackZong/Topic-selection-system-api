@@ -10,9 +10,8 @@ if(config.env === 'dev') {
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.all('*', function(req, res, next) {
-	console.log("123")
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Content-Type");
+    res.header("Access-Control-Allow-Headers", "Content-Type,X-Requested-With");
     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     res.header("Content-Type", "application/json;charset=utf-8");
     if(req.method === 'OPTIONS') {
