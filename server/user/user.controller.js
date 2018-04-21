@@ -9,8 +9,21 @@ function get(req, res) {
 	return res.json(req.user)
 }
 function list(req, res, next) {
-  const { limit = 50, skip = 0 } = req.query
-  return res.json(User.list())
+  const { page_limit = 20, page = 0 } = req.query
+  User.list({page_limit: page_limit,page: page}).then(response => {
+  	User.count().then(count => {
+      res.json({ code: 1, msg: 'success',data: response, page: { 
+      	page_limit: parseInt(page_limit), 
+      	page: parseInt(page), 
+      	count: count.length } 
+      })
+  	}).catch(err => {
+      res.json({ code: -1, msg: 'query student count err '})
+  	})
+  }).catch(err => {
+  	console.log(err)
+    res.json({ code: -1, msg: 'query student list error' })
+  })
 }
 function create(req,res,next) {
 	const user = new User({
@@ -31,7 +44,7 @@ function remove(req,res,next) {
 }
 function login(req,res,next) {
 	User.login(req.body).then(response => {
-		if(response.st_password === req.body.password) {
+		if(response.password === req.body.password) {
 			res.json({ code: 1, msg: 'login suceess', data: { username: req.body.username }}) 
 		} else {
 			res.json({ code: 0, msg: 'password not correct' })

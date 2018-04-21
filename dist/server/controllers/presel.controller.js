@@ -8,4 +8,11 @@ function selection(req, res, next) {
     console.log(err);
   });
 }
-module.exports = { selection: selection };
+function list(req, res, next) {
+  PreSel.list(req.body).then(function (response) {
+    res.json({ code: 1, msg: 'success', data: response });
+  }).catch(function (err) {
+    res.json({ code: 0, msg: 'query pre sel error' });
+  });
+}
+module.exports = { selection: selection, list: list };

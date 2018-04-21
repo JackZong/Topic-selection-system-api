@@ -11,7 +11,8 @@ const Thesis = sequelize.define('Thesis', {
   'th_maxnum': { type: Sequelize.INTEGER },
   'th_state': { type: Sequelize.INTEGER },
   'th_ispass': { type: Sequelize.STRING },
-  'th_year': { type: Sequelize.STRING }
+  'th_year': { type: Sequelize.STRING },
+  'th_d_id': { type: Sequelize.STRING }
 }, {
   timestamp: false,
   tableName: 'Thesis',
@@ -22,7 +23,7 @@ const ThesisField = sequelize.define('ThesisField', {
   'thf_id': { type: Sequelize.INTEGER, primaryKey: true },
   'thf_field': { type: Sequelize.STRING } 
 }, {
-	timestamp: false,
+	timestamps: false,
 	tableName: 'ThesisField',
   underscored: true,
   freezeTableName: true
@@ -31,11 +32,11 @@ const ThesisLevel = sequelize.define('ThesisLevel', {
   'thl_id': { type: Sequelize.INTEGER },
   'thl_level': { type: Sequelize.STRING }
 }, {
-  timestamp: false,
+  timestamps: false,
   tableName: 'ThesisLevel',
   underscored: true,
   freezeTableName: true
-})
+ })
 ThesisField.hasOne(Thesis,{ foreignKey: 'th_thf_id', targetKey: 'thf_id'})
 Thesis.belongsTo(ThesisField, { targetKey: 'thf_id', foreignKey: 'th_thf_id' })
 ThesisLevel.hasOne(Thesis,{ foreignKey: 'th_thl_id', targetKey: 'thl_id'})
@@ -69,4 +70,18 @@ function list(payload) {
     }]
   })
 }
-module.exports = { list,count }
+function add(payload) {
+  return Thesis.create(payload)
+}
+function update(payload) {
+  return Thesis.update({
+    'th_name': payload.th_name,
+    'th_requirement': payload.th_requirement,
+    'th_maxnum': payload.th_maxnum,
+    'th_thf_id': payload.th_thf_id,
+    'th_thl_id': payload.th_thl_id
+  },{
+    where: {'th_id': payload.th_id}
+  })
+}
+module.exports = { list, count, add, Thesis, ThesisField, ThesisLevel,update }

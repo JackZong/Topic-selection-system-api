@@ -14,12 +14,25 @@ function get(req, res) {
 }
 function list(req, res, next) {
 	var _req$query = req.query,
-	    _req$query$limit = _req$query.limit,
-	    limit = _req$query$limit === undefined ? 50 : _req$query$limit,
-	    _req$query$skip = _req$query.skip,
-	    skip = _req$query$skip === undefined ? 0 : _req$query$skip;
+	    _req$query$page_limit = _req$query.page_limit,
+	    page_limit = _req$query$page_limit === undefined ? 20 : _req$query$page_limit,
+	    _req$query$page = _req$query.page,
+	    page = _req$query$page === undefined ? 0 : _req$query$page;
 
-	return res.json(User.list());
+	User.list({ page_limit: page_limit, page: page }).then(function (response) {
+		User.count().then(function (count) {
+			res.json({ code: 1, msg: 'success', data: response, page: {
+					page_limit: parseInt(page_limit),
+					page: parseInt(page),
+					count: count.length }
+			});
+		}).catch(function (err) {
+			res.json({ code: -1, msg: 'query student count err ' });
+		});
+	}).catch(function (err) {
+		console.log(err);
+		res.json({ code: -1, msg: 'query student list error' });
+	});
 }
 function create(req, res, next) {
 	var user = new User({
@@ -47,7 +60,7 @@ function remove(req, res, next) {
 }
 function login(req, res, next) {
 	User.login(req.body).then(function (response) {
-		if (response.st_password === req.body.password) {
+		if (response.password === req.body.password) {
 			res.json({ code: 1, msg: 'login suceess', data: { username: req.body.username } });
 		} else {
 			res.json({ code: 0, msg: 'password not correct' });

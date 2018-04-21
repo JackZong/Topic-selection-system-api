@@ -4,7 +4,7 @@ const paramValidation = require('../../config/param-validation')
 const userCtrl = require('./user.controller')
 const router = express.Router()
 
-router.route('/')
+router.route('/list')
   .get(userCtrl.list)
   .post(validate(paramValidation.createUser),userCtrl.create);
 router.route('/login')

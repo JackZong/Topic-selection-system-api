@@ -3,7 +3,7 @@ const Sequelize = require('sequelize')
 const httpStatus = require('http-status')
 const APIError = require('../helpers/APIError')
 const sequelize = require('../../config/mssql')
-
+const { Mentor } = require('../models/mentor.model')
 const Student = sequelize.define('student', {
   st_name: {
   	type: Sequelize.STRING
@@ -54,29 +54,37 @@ const Student = sequelize.define('student', {
   tableName: 'Student',
   timestamps: false
 })
-
-function list () {
-	// sequelize.query('SELECT * FROM Student').spread((res,meta) => {
- //    return res
- //  })
-  Student.findAll({
-    attributes: ['st_name','st_id'],
+function count() {
+  return Student.findAll({
+    attributes: ['st_id'],
     raw: true
-  }).then(student => {
-    console.log(student)
-    return student
-  }).catch(err => {
-    console.log(err)
+  })
+}
+function list (payload) {
+  return Student.findAll({
+    attributes: ['st_id','st_name','st_sex','st_grade','st_class','st_telephone','st_qq','st_email'],
+    raw: true,
+    offset: parseInt(payload.page_limit) * parseInt(payload.page),
+    limit: parseInt(payload.page_limit),
+    order: [['st_id','DESC']]
   })
 }
 function get(){
 
 }
 function login(payload){
-  return Student.findOne({
-    attributes:['st_password'],
-    raw: true,
-    where: {'st_id':payload.username}
-  })
+  if(payload.username.length === 6) {
+    return Mentor.findOne({
+      attributes:[['mt_password','password']],
+      raw: true,
+      where: {'mt_id':payload.username}
+    })
+  } else {
+    return Student.findOne({
+      attributes:['st_password'],
+      raw: true,
+      where: {'st_id':payload.username}
+    })
+  }
 }
-module.exports = { list,get,login }
+module.exports = { list,get,login,count,Student }
