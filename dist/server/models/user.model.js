@@ -1,9 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _templateObject = _taggedTemplateLiteral(['select * from Class'], ['select * from Class']),
@@ -34,7 +30,7 @@ var login = function login(params) {
 		console.log(err);
 	});
 };
-exports.default = {
+module.exports = {
 	getList: getList,
 	login: login
 };

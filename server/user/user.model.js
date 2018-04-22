@@ -81,7 +81,7 @@ function login(payload){
     })
   } else {
     return Student.findOne({
-      attributes:['st_password'],
+      attributes:[['st_password','password']],
       raw: true,
       where: {'st_id':payload.username}
     })

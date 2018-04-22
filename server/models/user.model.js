@@ -13,7 +13,7 @@ const login = (params) => {
 		console.log(err)
 	})	
 } 
-export default {
+module.exports = {
 	getList,
 	login
 }

@@ -5,6 +5,17 @@ var sequelize = require('../../config/mssql');
 
 var _require = require('../mentor/mentor.model'),
     Mentor = _require.Mentor;
+//const { PreSel } = require('../models/presel.model')
+// const PreSel = sequelize.define('Pre_SelTh_Rec', {
+//   'st_id': { type: Sequelize.STRING,primaryKey: true },
+//   'th_id': { type: Sequelize.INTEGER,primaryKey: true },
+//   'psr_state': { type: Sequelize.STRING },
+//   'mt_id': { type: Sequelize.STRING }
+// },{
+//   tableName: 'Pre_SelTh_Rec',
+//   underscored: true
+// })
+
 
 var Thesis = sequelize.define('Thesis', {
   'th_id': { type: Sequelize.INTEGER },
@@ -48,6 +59,9 @@ ThesisLevel.hasOne(Thesis, { foreignKey: 'th_thl_id', targetKey: 'thl_id' });
 Thesis.belongsTo(ThesisLevel, { targetKey: 'thl_id', foreignKey: 'th_thl_id' });
 Mentor.hasOne(Thesis, { foreignKey: 'th_mt_id', targetKey: 'mt_id' });
 Thesis.belongsTo(Mentor, { targetKey: 'mt_id', foreignKey: 'th_mt_id' });
+// PreSel.belongsTo(Thesis,{ foreignKey: 'th_id', targetKey: 'th_id'})
+// Thesis.hasMany(PreSel, { targetKey: 'th_id', foreignKey: 'th_id' })
+
 function count() {
   return Thesis.findAll({
     where: { 'th_ispass': 'Y' },
