@@ -5,6 +5,7 @@ import thesisRoutes from './server/thesis/thesis.route'
 import preSelRoutes from './server/routes/presel.route'
 import thesisApplyRoutes from './server/routes/thesisapply.route'
 import logsRoutes from './server/routes/logs.route'
+import dashboardRoutes from './server/routes/dashboard.route'
 const router = express.Router()
 router.get('/help-check',(req,res) => {
 	res.send('OK')
@@ -15,4 +16,5 @@ router.use('/thesis/', thesisRoutes)
 router.use('/preselection/',preSelRoutes)
 router.use('/thesisapply/',thesisApplyRoutes)
 router.use('/logs/',logsRoutes)
+router.use('/dashboard/',dashboardRoutes)
 module.exports = router

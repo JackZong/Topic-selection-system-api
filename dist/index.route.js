@@ -28,6 +28,10 @@ var _logs = require('./server/routes/logs.route');
 
 var _logs2 = _interopRequireDefault(_logs);
 
+var _dashboard = require('./server/routes/dashboard.route');
+
+var _dashboard2 = _interopRequireDefault(_dashboard);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = _express2.default.Router();
@@ -40,4 +44,5 @@ router.use('/thesis/', _thesis2.default);
 router.use('/preselection/', _presel2.default);
 router.use('/thesisapply/', _thesisapply2.default);
 router.use('/logs/', _logs2.default);
+router.use('/dashboard/', _dashboard2.default);
 module.exports = router;
