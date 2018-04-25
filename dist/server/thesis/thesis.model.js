@@ -75,7 +75,7 @@ function list(payload) {
     where: { 'th_ispass': 'Y' },
     raw: true,
     offset: parseInt(payload.page_limit) * parseInt(payload.page) || 0,
-    limit: parseInt(payload.pege_limit) || 20,
+    limit: parseInt(payload.page_limit) || 20,
     order: [['th_id', 'ASC']],
     include: [{
       model: ThesisField,

@@ -32,6 +32,14 @@ var _dashboard = require('./server/routes/dashboard.route');
 
 var _dashboard2 = _interopRequireDefault(_dashboard);
 
+var _profile = require('./server/routes/profile.route');
+
+var _profile2 = _interopRequireDefault(_profile);
+
+var _thesischeck = require('./server/routes/thesischeck.route');
+
+var _thesischeck2 = _interopRequireDefault(_thesischeck);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = _express2.default.Router();
@@ -45,4 +53,6 @@ router.use('/preselection/', _presel2.default);
 router.use('/thesisapply/', _thesisapply2.default);
 router.use('/logs/', _logs2.default);
 router.use('/dashboard/', _dashboard2.default);
+router.use('/profile/', _profile2.default);
+router.use('/thesischeck/', _thesischeck2.default);
 module.exports = router;
