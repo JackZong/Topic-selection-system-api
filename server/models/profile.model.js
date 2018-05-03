@@ -8,4 +8,11 @@ function findOne(payload) {
   	raw: true
   })
 }
-module.exports = { findOne }
+function update(payload) {
+  return Student.update({
+  	'st_introduce': payload.st_introduce
+  	},{
+  	where: {'st_id': payload.username}
+  })
+}
+module.exports = { findOne, update }

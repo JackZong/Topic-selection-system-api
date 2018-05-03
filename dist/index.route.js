@@ -40,6 +40,14 @@ var _thesischeck = require('./server/routes/thesischeck.route');
 
 var _thesischeck2 = _interopRequireDefault(_thesischeck);
 
+var _mentor = require('./server/routes/mentor.route');
+
+var _mentor2 = _interopRequireDefault(_mentor);
+
+var _message = require('./server/routes/message.route');
+
+var _message2 = _interopRequireDefault(_message);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = _express2.default.Router();
@@ -55,4 +63,6 @@ router.use('/logs/', _logs2.default);
 router.use('/dashboard/', _dashboard2.default);
 router.use('/profile/', _profile2.default);
 router.use('/thesischeck/', _thesischeck2.default);
+router.use('/teacher/', _mentor2.default);
+router.use('/message/', _message2.default);
 module.exports = router;

@@ -8,4 +8,11 @@ function findOne(req, res, next) {
     res.json({ code: 0, msg: 'query failed' });
   });
 }
-module.exports = { findOne: findOne };
+function update(req, res, next) {
+  Profile.update(req.body).then(function (success) {
+    res.json({ code: 1, msg: 'success', data: success });
+  }).catch(function (err) {
+    res.json({ code: 0, msg: 'query failed' });
+  });
+}
+module.exports = { findOne: findOne, update: update };

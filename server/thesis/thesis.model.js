@@ -65,12 +65,12 @@ function count() {
 }
 function list(payload) {
   return Thesis.findAll({
-  	attributes: ['th_id','th_name','th_maxnum','th_state','th_mt_id'],
+  	attributes: ['th_id','th_name','th_requirement','th_maxnum','th_state','th_mt_id'],
   	where: {'th_ispass': 'Y'},
   	raw: true,
-    offset: parseInt(payload.page_limit) * parseInt(payload.page) || 0,
-    limit: parseInt(payload.page_limit) || 20,
-    order: [['th_id','ASC']],
+ //   offset: parseInt(payload.page_limit) * parseInt(payload.page) || 0,
+   // limit: parseInt(payload.page_limit) || 20,
+    order: [['th_id','DESC']],
     include: [{
       model: ThesisField,
       attributes: [['thf_field','thf_field']]

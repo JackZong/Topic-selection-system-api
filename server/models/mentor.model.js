@@ -1,5 +1,7 @@
 const Sequelize = require('Sequelize')
 const sequelize = require('../../config/mssql')
+const { JobTitle } = require('./jobtitle.model')
+const {ResearchLaboratory} = require('./researchlab.model')
 const Mentor = sequelize.define('mentor', {
 	'mt_id': Sequelize.STRING,
 	'mt_name': Sequelize.STRING,
@@ -22,4 +24,7 @@ const Mentor = sequelize.define('mentor', {
 	underscored: true,
 	freezeTableName: true
 })
-module.exports = { Mentor }
+function list() {
+	return sequelize.query('SELECT a.mt_id,a.mt_name,a.mt_sex,a.mt_telephone,a.mt_email,b.jt_name,c.res_name from Mentor as a,JobTitle as b,ResearchLaboratory as c WHERE a.mt_jt_id = b.jt_id AND a.mt_res_id = c.res_id')
+}
+module.exports = { Mentor, list }

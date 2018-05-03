@@ -55,9 +55,12 @@ function listStudent(payload) {
 }
 function update(payload){
   return PreSel.update({
-  	'psr_state': payload.psr_state
-  },{
-  	where: { 'st_id': payload.st_id,'th_id': payload.th_id }
-  })
+          'psr_state': payload.psr_state
+        },{
+          where: { 'st_id': payload.st_id,'th_id': payload.th_id }
+        })
 }
-module.exports = { PreSel, createSel, list, update,listStudent }
+function shouldUpdate(payload) {
+  return sequelize.query(`SELECT psr_state FROM Pre_SelTh_Rec WHERE st_id = ${payload.st_id}`)
+}
+module.exports = { PreSel, createSel, list, update, listStudent,shouldUpdate }

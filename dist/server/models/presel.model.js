@@ -69,4 +69,7 @@ function update(payload) {
     where: { 'st_id': payload.st_id, 'th_id': payload.th_id }
   });
 }
-module.exports = { PreSel: PreSel, createSel: createSel, list: list, update: update, listStudent: listStudent };
+function shouldUpdate(payload) {
+  return sequelize.query('SELECT psr_state FROM Pre_SelTh_Rec WHERE st_id = ' + payload.st_id);
+}
+module.exports = { PreSel: PreSel, createSel: createSel, list: list, update: update, listStudent: listStudent, shouldUpdate: shouldUpdate };

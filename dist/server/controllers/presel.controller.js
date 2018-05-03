@@ -26,10 +26,27 @@ function list(req, res, next) {
   }
 }
 function update(req, res, next) {
-  PreSel.update(req.body).then(function (response) {
-    res.json({ code: 1, msg: 'success', data: response });
-  }).catch(function (err) {
-    res.json({ code: 0, msg: 'update presel error' });
+  PreSel.shouldUpdate(req.body).then(function (ok) {
+    var sUpdate = true;
+    if (ok) {
+      ok[0].map(function (item, index) {
+        if (item.psr_state === 'D') {
+          sUpdate = false;
+        }
+        return item;
+      });
+    }
+    if (sUpdate) {
+      PreSel.update(req.body).then(function (response) {
+        res.json({ code: 1, msg: 'success', data: response });
+      }).catch(function (err) {
+        res.json({ code: 0, msg: 'update presel error' });
+      });
+    } else {
+      res.json({ code: -1, msg: 'This Student Had A Define Selection' });
+    }
+  }).catch(function (no) {
+    console.log(no);
   });
 }
 module.exports = { selection: selection, list: list, update: update };

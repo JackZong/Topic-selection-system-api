@@ -24,10 +24,27 @@ function list(req,res,next){
   }
 }
 function update(req,res,next) {
-	PreSel.update(req.body).then(response => {
-     res.json({ code:1,msg: 'success',data: response})
-	}).catch(err => {
-		res.json({ code:0,msg: 'update presel error'})
-	})
+  PreSel.shouldUpdate(req.body).then(ok => {
+    let sUpdate = true
+    if(ok) {
+      ok[0].map((item,index) => {
+        if(item.psr_state === 'D') {
+         sUpdate = false
+        }
+        return item
+      })
+    }
+    if(sUpdate) {
+        PreSel.update(req.body).then(response => {
+           res.json({ code:1,msg: 'success',data: response})
+        }).catch(err => {
+          res.json({ code:0,msg: 'update presel error'})
+        })
+      } else {
+        res.json({ code:-1,msg: 'This Student Had A Define Selection'})
+      }
+  }).catch(no => {
+    console.log(no)
+  })
 }
-module.exports = { selection, list,update }
+module.exports = { selection, list, update }

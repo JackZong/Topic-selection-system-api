@@ -18,11 +18,11 @@ function count() {
 }
 function list(payload) {
   return Thesis.findAll({
-  	attributes: ['th_id','th_name','th_maxnum','th_state','th_mt_id','th_ispass','th_avail'],
+  	attributes: ['th_id','th_name','th_maxnum','th_state','th_mt_id','th_ispass','th_avail','th_requirement'],
   	raw: true,
     offset: parseInt(payload.page_limit) * parseInt(payload.page) || 0,
     limit: parseInt(payload.page_limit) || 20,
-    order: [['th_id','ASC']],
+    order: [['th_id','DESC']],
     where: {'th_year': '2018'},
     include: [{
       model: ThesisField,
