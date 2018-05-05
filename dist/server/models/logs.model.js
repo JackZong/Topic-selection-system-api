@@ -1,6 +1,6 @@
 'use strict';
 
-var Sequelize = require('Sequelize');
+var Sequelize = require('sequelize');
 var sequelize = require('../../config/mssql');
 var LoginLog = sequelize.define('LoginLog', {
   'log_id': { type: Sequelize.INTEGER },

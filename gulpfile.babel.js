@@ -4,7 +4,7 @@ import gulpLoadPlugins from 'gulp-load-plugins'
 const plugins = gulpLoadPlugins()
 import runSequence from 'run-sequence'
 const paths = {
-	js: ['./**/*.js','!dist/**','!node_modules/**','!coverage/**']
+	js: ['./**/*.js','!dist/**','!node_modules/**','!coverage/**','index.js']
 }
 gulp.task('default', function(){
 

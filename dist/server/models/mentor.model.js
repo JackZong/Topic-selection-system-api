@@ -1,6 +1,6 @@
 'use strict';
 
-var Sequelize = require('Sequelize');
+var Sequelize = require('sequelize');
 var sequelize = require('../../config/mssql');
 
 var _require = require('./jobtitle.model'),

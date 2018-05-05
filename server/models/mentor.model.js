@@ -1,4 +1,4 @@
-const Sequelize = require('Sequelize')
+const Sequelize = require('sequelize')
 const sequelize = require('../../config/mssql')
 const { JobTitle } = require('./jobtitle.model')
 const {ResearchLaboratory} = require('./researchlab.model')

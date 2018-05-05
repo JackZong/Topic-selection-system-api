@@ -1,6 +1,6 @@
 'use strict';
 
-var Sequelize = require('Sequelize');
+var Sequelize = require('sequelize');
 var sequelize = require('../../config/mssql');
 var Def_St_Th = sequelize.define('Def_St_Th', {
   'st_id': { type: Sequelize.STRING },

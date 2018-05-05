@@ -1,4 +1,4 @@
-const Sequelize = require('Sequelize')
+const Sequelize = require('sequelize')
 const sequelize = require('../../config/mssql')
 const { Student } = require('../user/user.model')
 function findOne(payload) {

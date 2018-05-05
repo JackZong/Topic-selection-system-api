@@ -66,8 +66,8 @@ function login(req, res, next) {
 			res.json({ code: 0, msg: 'password not correct' });
 		}
 	}).catch(function (err) {
-		console.log('login fail', err);
-		res.json({ code: -1, msg: 'request error' });
+		console.log('login fail aa', err);
+		res.json({ code: -1, msg: 'request error 123' });
 	});
 }
 module.exports = { load: load, list: list, create: create, update: update, remove: remove, login: login };

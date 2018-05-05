@@ -1,4 +1,4 @@
-import Joi from 'joi'
+const Joi = require('joi') 
 //Loads environment variables from .env for nodejs projects.https://github.com/motdotla/dotenv
 require('dotenv').config()
 const envVarsSchema = Joi.object({
@@ -25,4 +25,4 @@ const config = {
 	jwtSecret: envVars.JWT_SECRET,
 	db: db
 }
-export default config
+module.exports = config 

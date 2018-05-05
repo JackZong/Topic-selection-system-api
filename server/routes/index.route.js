@@ -1,6 +1,6 @@
-import express from 'express'
-import authRoutes from './auth.route'
-import userModel from '../models/user.model'
+const express = require('express') 
+const authRoutes = require('./auth.route') 
+const userModel = require('../models/user.model') 
 const router = express.Router()
 router.get('/users', (req,res) => {
 	

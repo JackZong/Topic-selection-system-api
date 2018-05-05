@@ -1,4 +1,4 @@
-const Sequelize = require('Sequelize')
+const Sequelize = require('sequelize')
 const sequelize = require('../../config/mssql')
 const Def_St_Th = sequelize.define('Def_St_Th', {
   'st_id': { type: Sequelize.STRING },

@@ -1,15 +1,15 @@
-import express from 'express'
-import authRouters from './server/auth/auth.route'
-import userRoutes from './server/user/user.route'
-import thesisRoutes from './server/thesis/thesis.route'
-import preSelRoutes from './server/routes/presel.route'
-import thesisApplyRoutes from './server/routes/thesisapply.route'
-import logsRoutes from './server/routes/logs.route'
-import dashboardRoutes from './server/routes/dashboard.route'
-import profileRoutes from './server/routes/profile.route'
-import thesisCheckRoutes from './server/routes/thesischeck.route'
-import teacherRoutes from './server/routes/mentor.route'
-import messageRoutes from './server/routes/message.route'
+const express = require('express') 
+const authRouters = require('./server/auth/auth.route') 
+const userRoutes = require('./server/user/user.route') 
+const thesisRoutes = require('./server/thesis/thesis.route') 
+const preSelRoutes = require('./server/routes/presel.route') 
+const thesisApplyRoutes = require('./server/routes/thesisapply.route')
+const logsRoutes = require('./server/routes/logs.route') 
+const dashboardRoutes = require('./server/routes/dashboard.route') 
+const profileRoutes = require('./server/routes/profile.route')
+const thesisCheckRoutes = require('./server/routes/thesischeck.route') 
+const teacherRoutes = require('./server/routes/mentor.route') 
+const messageRoutes = require('./server/routes/message.route') 
 const router = express.Router()
 router.get('/help-check',(req,res) => {
 	res.send('OK')

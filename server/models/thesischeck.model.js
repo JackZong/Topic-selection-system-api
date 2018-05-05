@@ -1,4 +1,4 @@
-const Sequelize = require('Sequelize')
+const Sequelize = require('sequelize')
 const sequelize = require('../../config/mssql')
 const { Mentor } = require('../mentor/mentor.model')
 const { Thesis, ThesisField, ThesisLevel } = require('../thesis/thesis.model')

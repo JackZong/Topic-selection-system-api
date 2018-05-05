@@ -1,4 +1,4 @@
-const Sequelize = require('Sequelize')
+const Sequelize = require('sequelize')
 const sequelize = require('../../config/mssql')
 const LoginLog = sequelize.define('LoginLog', {
   'log_id': { type: Sequelize.INTEGER },
